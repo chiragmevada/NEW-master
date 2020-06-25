@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".servicesignup">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shape5" />
+
+    <LinearLayout
+        android:id="@+id/lnblue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="45dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello,\nService\nProvider"
+            android:textColor="@android:color/white"
+            android:textSize="19dp" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spservice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tvl2"
+        style="@style/LoginInputLayoutStyle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spservice"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:theme="@style/LoginInputLayoutStyle1"
+        app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etsphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvl1"
+            android:background="@drawable/shape1"
+            android:drawableRight="@drawable/ic_phone_black_24dp"
+            android:hint="Enter Phone No"
+            android:inputType="number"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/colorblack"
+            android:textColorHint="@color/colorgray"
+            android:textSize="15dp" />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tvl3"
+        style="@style/LoginInputLayoutStyle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvl2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:theme="@style/LoginInputLayoutStyle1"
+        app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etsemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvl1"
+            android:background="@drawable/shape1"
+            android:drawableRight="@drawable/ic_email_black_24dp"
+            android:hint="Enter Email Address"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/colorblack"
+            android:textColorHint="@color/colorgray"
+            android:textSize="15dp" />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tvl4"
+        style="@style/LoginInputLayoutStyle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvl3"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:theme="@style/LoginInputLayoutStyle1"
+        app:errorEnabled="true"
+        app:passwordToggleDrawable="@drawable/eye"
+        app:passwordToggleEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etspw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape1"
+            android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
+            android:hint="Enter Your Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/colorblack"
+            android:textColorHint="@color/colorgray"
+            android:textSize="15dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tvl5"
+        style="@style/LoginInputLayoutStyle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvl4"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:theme="@style/LoginInputLayoutStyle1"
+        app:errorEnabled="true"
+        app:passwordToggleDrawable="@drawable/eye"
+        app:passwordToggleEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etsaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape1"
+            android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
+            android:hint="Enter Your Address"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/colorblack"
+            android:textColorHint="@color/colorgray"
+            android:textSize="15dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/lnsw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvl5"
+        android:orientation="horizontal">
+
+        <Switch
+            android:id="@+id/ssw2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="0dp"
+            android:textOff="off"
+            android:textOn="on"
+            android:theme="@style/Switchback1" />
+
+        <TextView
+            android:id="@+id/tvterms1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:text="Accept the terms and policy"
+            android:textColor="@color/colorblack"
+            android:textSize="13dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnssignup"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lnsw"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape6"
+        android:text="Sign Up"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/lllog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnssignup"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvsalready"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:text="Already have an account?"
+            android:textColor="@color/colorblack"
+            android:textSize="13dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tvlssignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Log In"
+            android:textColor="@color/colorOrange"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

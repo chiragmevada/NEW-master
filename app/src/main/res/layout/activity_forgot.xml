@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".forgot">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_shape" />
+    <LinearLayout
+        android:id="@+id/lnblue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="45dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot"
+            android:textColor="@android:color/white"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password!"
+            android:textColor="@android:color/white"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/LoginInputLayoutStyle"
+        android:layout_below="@+id/img"
+        android:id="@+id/tvli"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        android:theme="@style/LoginInputLayoutStyle">
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etph"
+            android:layout_below="@+id/tvl1"
+            android:background="@drawable/shape1"
+            android:drawableRight="@drawable/ic_phone_black_24dp"
+            android:hint="Your Mobile No"
+            android:inputType="number"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/colorblack"
+            android:textColorHint="@color/colorgray"
+            android:textSize="15dp"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvli"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape2"
+        android:text="Recover Now"
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:id="@+id/lid1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnlogin"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:text="Back to login?"
+            android:id="@+id/tvb1"
+            android:textColor="@color/colorblack"
+            android:textSize="13dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tvllogin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Login"
+            android:textColor="@color/colorblue"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

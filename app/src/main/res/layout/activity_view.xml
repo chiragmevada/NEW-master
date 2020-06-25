@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_shape" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="132dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/getconnected" />
+
+
+    <LinearLayout
+        android:id="@+id/ln11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btnvsign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape2"
+            android:gravity="center"
+            android:text="Registration"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnvlog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape3"
+            android:gravity="center"
+            android:text="Sign in now"
+            android:textColor="@color/colorblue"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/tvterms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvcopy"
+            android:layout_alignParentBottom="false"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:text="@string/mys"
+            android:textColor="@color/colorblue"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tvcopy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:text="@string/cc"
+            android:textColor="@color/colorblack"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

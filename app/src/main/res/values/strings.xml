@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">NEW</string>
+    <string name="app_name1">Manage Request</string>
+    <string name="app_name2">My Request</string>
+
+
+    <string name="mys">Terms &amp; Condition</string> <!-- this is not ok -->
+
+
+    <string name="mystring">Terms &amp; </string> <!-- this is not ok -->
+
+    <string name="mystring1">Condition</string> <!-- this is not ok -->
+
+
+    <string name="cc">2019 copyright by get connected</string>
+    <string name="terms">
+
+        Why mobile apps need Terms &amp; Condition
+
+</string>
+    <string name="terms1">
+
+              Your mobile app needs a Terms and Conditions if you want to stop abusive users,terminate access or accounts at your sole discretion, and enforce rules and guidelines that you set. It’s the set of rules that users must follow to access, use and continue to use your app.
+        \n Think of your Terms and Conditions agreement as the legal agreement where you maintain your rights to exclude users from your app in the event that they abuse your app, and where you maintain your legal rights against potential abusers of your app, and so on.
+        \n A Terms and Conditions is not required by law. Most mobile apps would want and need this kind of agreement, but especially so those:
+        \n That are part of a SaaS app
+        \n That have user-generated content
+        \n That are part of an ecommerce store
+        \n Business benefits: when you have a Terms and Conditions agreement in place on your app and require users to agree to be bound by the agreement before allowing them to use your app, you will get a number of benefits:
+        \n You will be protected against abuses by users, such as copyright infringement, spamming of other users, and general misuse of your app,
+        \n You can require arbitration over litigation, and even select the governing law to be used in the event of a legal issue,
+        \n You maintain the right to terminate user’s accounts at any time you may need or want to, and
+        \n Your liability to users will be limited.
+
+
+
+
+</string>
+    <string name="title_activity_servicedrawer">servicedrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Get Connected</string>
+    <string name="nav_header_subtitle">username@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_logout">Logout</string>
+
+    <!--    <string name="menu_profile">Profile</string>-->
+    <!--    <string name="menu_add_req">Add Requests</string>-->
+    <!--    <string name="menu_man_req">Manage Requests</string>    -->
+    <!--    <string name="menu_changepw">Change Password</string>-->
+    <!--    <string name="menu_feedback">Feedback</string>-->
+    <!--    <string name="menu_logout">Logout</string>-->
+
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="menu_profile">Profile</string>
+
+    <string name="menu_add_req">Add Requests</string>
+    <string name="menu_man_req">Manage Requests</string>
+    <string name="menu_changepw">Change Password</string>
+    <string name="menu_feedback">Feedback</string>
+    <string name="menu_logout">Logout</string>
+    <string-array name="main_cat">
+        <item>Police Station</item>
+        <item>Hospital</item>
+        <item>Animal Resque</item>
+        <item>Blood Donation</item>
+        <item>Fire Brigade</item>
+        <item>Child Protection</item>
+        <item>Girls Safety</item>
+        <item>Old Age Home</item>
+        <item>Orphanage</item>
+        <item>Aadhar Card</item>
+        <item>Pancard</item>
+        <item>Government Scheme</item>
+    </string-array>
+
+    <string-array name="city_list">
+        <item>Surat</item>
+    </string-array>
+
+    <string-array name="area_list">
+        <item>Varachha</item>
+        <item>Mota varachha</item>
+        <item>katargam</item>
+        <item>Navsari</item>
+        <item>bardoli</item>
+        <item>puna gam</item>
+        <item>Amroli</item>
+    </string-array>
+
+</resources>
