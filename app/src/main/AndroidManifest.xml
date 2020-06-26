@@ -14,23 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".user_my_req">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".scw"></activity>
+        <activity android:name=".sfeed" />
+        <activity android:name=".user_my_req" />
         <activity
             android:name=".Tab2Fragment"
             tools:ignore="Instantiatable" />
         <activity
             android:name=".Tab1Fragment"
             tools:ignore="Instantiatable" />
-        <activity android:name=".service_man_req">
-
-        </activity>
+        <activity android:name=".service_man_req" />
         <activity android:name=".addRequest" />
         <activity android:name=".profile" />
         <activity
@@ -75,7 +68,13 @@
         <activity android:name=".view" />
         <activity android:name=".signup" />
         <activity android:name=".login" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

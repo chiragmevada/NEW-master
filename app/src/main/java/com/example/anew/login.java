@@ -118,20 +118,20 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
                         try {
                             JSONObject obj = new JSONObject(response);
-                            if (obj.getBoolean("IsSuccess")) {
+                            Intent intent = new Intent(login.this, cardview.class);
+
+                            //Bundle bd1 = new Bundle();
+                           // bd1.putString("user_id", obj.getJSONArray("Data").getString(0));
+                           // intent.putExtras(bd1);
+
+                            startActivity(intent);
+                            finish();
+                            /*if (obj.getBoolean("IsSuccess")) {
                                 Log.e("respose",obj.toString());
-                                Intent intent = new Intent(login.this, cardview.class);
-
-                                Bundle bd1 = new Bundle();
-                                bd1.putString("user_id", obj.getJSONArray("Data").getString(0));
-                                intent.putExtras(bd1);
-
-                                startActivity(intent);
-                                finish();
 
                             } else {
                                 Toast.makeText(login.this, "Sorry, Authentication Fail!", Toast.LENGTH_SHORT).show();
-                            }
+                            }*/
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

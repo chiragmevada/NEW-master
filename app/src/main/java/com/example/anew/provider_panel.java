@@ -38,7 +38,7 @@ public class provider_panel extends AppCompatActivity {
         feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(provider_panel.this, feedback.class);
+                Intent intent = new Intent(provider_panel.this, sfeed.class);
                 startActivity(intent);
             }
         });
@@ -56,7 +56,7 @@ public class provider_panel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle bd1 = new Bundle();
-                Intent intent = new Intent(provider_panel.this, provider_request.class);
+                Intent intent = new Intent(provider_panel.this, service_man_req.class);
                 bd1.putString("user_id", newString);
                 intent.putExtras(bd1);
                 startActivity(intent);
@@ -67,7 +67,7 @@ public class provider_panel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle bd1 = new Bundle();
-                Intent intent = new Intent(provider_panel.this, provider_cpw.class);
+                Intent intent = new Intent(provider_panel.this, scw.class);
                 bd1.putString("user_id", newString);
                 intent.putExtras(bd1);
                 startActivity(intent);

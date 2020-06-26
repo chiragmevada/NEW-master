@@ -23,6 +23,7 @@ public class select extends AppCompatActivity {
 
     TextView txt;
     ImageView cameraImg, pickImage;
+    Button btnuserreq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,15 @@ public class select extends AppCompatActivity {
         txt = (TextView) findViewById(R.id.cat_txt);
         cameraImg = (ImageView) findViewById(R.id.cameraIcon);
         pickImage = (ImageView) findViewById(R.id.pickImage);
+        btnuserreq = (Button) findViewById(R.id.btnuserreq);
+
         Spinner spinnerArea = (Spinner) findViewById(R.id.spAres);
         Spinner spinnerCity = (Spinner) findViewById(R.id.spCity);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.area_list, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerArea.setAdapter(adapter);
+        spinnerCity.setAdapter(adapter);
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
                 this, R.array.city_list, android.R.layout.simple_spinner_item);
@@ -62,6 +65,17 @@ public class select extends AppCompatActivity {
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, 1);
                 }
+            }
+        });
+
+        btnuserreq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bd1 = new Bundle();
+                Intent intent = new Intent(select.this, user_my_req.class);
+//                bd1.putString("user_id", newString);
+                intent.putExtras(bd1);
+                startActivity(intent);
             }
         });
     }

@@ -69,7 +69,7 @@ public class user_panel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle bd1 = new Bundle();
-                Intent intent = new Intent(user_panel.this, user_request.class);
+                Intent intent = new Intent(user_panel.this, user_my_req.class);
                 bd1.putString("user_id", newString);
                 intent.putExtras(bd1);
                 startActivity(intent);

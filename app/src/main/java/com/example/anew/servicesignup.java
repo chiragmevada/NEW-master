@@ -169,7 +169,7 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
                         } else if (response.matches(res)) {
                             Toast.makeText(servicesignup.this, "Sorry, email already exist!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Intent intent = new Intent(servicesignup.this, map.class);
+                            Intent intent = new Intent(servicesignup.this, provider_panel.class);
                             Bundle bd1 = new Bundle();
                             bd1.putString("user_id", response);
                             intent.putExtras(bd1);

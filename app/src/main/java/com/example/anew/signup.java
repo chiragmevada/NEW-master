@@ -196,12 +196,12 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                         }
                         String res = "already";
                         String res1 = "no";
-                        /*Intent intent = new Intent(signup.this, UsermapActivity.class);
+                        Intent intent = new Intent(signup.this, cardview.class);
                         Bundle bd1 = new Bundle();
                         bd1.putString("user_id", "");
                         intent.putExtras(bd1);
                         startActivity(intent);
-                        finish();*/
+                        finish();
                     }
                 },
                 new Response.ErrorListener() {
