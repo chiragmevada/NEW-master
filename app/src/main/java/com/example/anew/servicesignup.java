@@ -150,8 +150,62 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
     }
 
 
+//    private void registerUser() {
+//        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+//
+//        final String cat = category.trim();
+//        final String s_p_phone = etsphone.getText().toString().trim();
+//        final String s_p_email = etsemail.getText().toString().trim();
+//        final String password = etspw.getText().toString().trim();
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        String res = "already";
+//                        String res1 = "no";
+//                        if (response.matches(res1)) {
+//                            Toast.makeText(servicesignup.this, "Sorry, an error occurred!", Toast.LENGTH_SHORT).show();
+//                        } else if (response.matches(res)) {
+//                            Toast.makeText(servicesignup.this, "Sorry, email already exist!", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Intent intent = new Intent(servicesignup.this, provider_panel.class);
+//                            Bundle bd1 = new Bundle();
+//                            bd1.putString("user_id", response);
+//                            intent.putExtras(bd1);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(servicesignup.this, "Fail", Toast.LENGTH_SHORT).show();
+//                    }
+//                }) {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<String, String>();
+//
+//                params.put("apiname", "RegisterServiceProvider");
+//                params.put("emailid", s_p_email);
+//                params.put("phoneno", s_p_phone);
+//                params.put("category", cat);
+//                params.put("full_address", "add");
+//                params.put("password", password);
+//                return params;
+//
+//            }
+//        };
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(stringRequest);
+//
+//    }
+
+
     private void registerUser() {
-        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+        String Url = "http://192.168.43.234/awarenes/service_insert_data.php";
 
         final String cat = category.trim();
         final String s_p_phone = etsphone.getText().toString().trim();
@@ -162,16 +216,17 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        String result = response.toString();
                         String res = "already";
                         String res1 = "no";
-                        if (response.matches(res1)) {
+                        if (result.matches(res1)) {
                             Toast.makeText(servicesignup.this, "Sorry, an error occurred!", Toast.LENGTH_SHORT).show();
-                        } else if (response.matches(res)) {
+                        } else if (result.matches(res)) {
                             Toast.makeText(servicesignup.this, "Sorry, email already exist!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Intent intent = new Intent(servicesignup.this, provider_panel.class);
+                            Intent intent = new Intent(servicesignup.this, map.class);
                             Bundle bd1 = new Bundle();
-                            bd1.putString("user_id", response);
+                            bd1.putString("user_id", result);
                             intent.putExtras(bd1);
                             startActivity(intent);
                             finish();
@@ -188,12 +243,10 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("apiname", "RegisterServiceProvider");
-                params.put("emailid", s_p_email);
-                params.put("phoneno", s_p_phone);
-                params.put("category", cat);
-                params.put("full_address", "add");
-                params.put("password", password);
+                params.put("cat", cat);
+                params.put("spPhone", s_p_phone);
+                params.put("spEmail", s_p_email);
+                params.put("Pass", password);
                 return params;
 
             }

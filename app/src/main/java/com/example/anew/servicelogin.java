@@ -97,8 +97,56 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
 
     }
 
+//    private void registerUser() {
+//        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+//
+//        final String sphone = etsphone1.getText().toString().trim();
+//        final String spassword = etspw1.getText().toString().trim();
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        String result = response.toString();
+//                        String res = "no";
+//                        if (result.matches(res)) {
+//                            Toast.makeText(servicelogin.this, "Sorry, Authentication Fail!", Toast.LENGTH_SHORT).show();
+//                        } else {
+//
+//                            Intent intent = new Intent(servicelogin.this, provider_panel.class);
+//
+//                            Bundle bd1 = new Bundle();
+//                            bd1.putString("user_id", result);
+//                            intent.putExtras(bd1);
+//
+//                            startActivity(intent);
+//                            finish();
+//
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(servicelogin.this, "Fail", Toast.LENGTH_SHORT).show();
+//                    }
+//                }) {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("apiname", "ServiceProviderLogin");
+//                params.put("phoneno", sphone);
+//                params.put("password", spassword);
+//                return params;
+//
+//            }
+//        };
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(stringRequest);
+//    }
+
     private void registerUser() {
-        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+        String Url = "http://192.168.43.234/awarenes/service_login.php";
 
         final String sphone = etsphone1.getText().toString().trim();
         final String spassword = etspw1.getText().toString().trim();
@@ -134,9 +182,8 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("apiname", "ServiceProviderLogin");
-                params.put("phoneno", sphone);
-                params.put("password", spassword);
+                params.put("Lphone", sphone);
+                params.put("Lpassword", spassword);
                 return params;
 
             }

@@ -105,8 +105,74 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
+//    private void registerUser() {
+//      //  String Url = "http://getconnected.edithlink.space/postwebservice.php";
+//        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+//
+//        final String phone = etphone1.getText().toString().trim();
+//        final String password = etpw1.getText().toString().trim();
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//
+//                        String result= response.toString();
+//                        String res="no";
+//
+//
+//
+//
+//                        try {
+//                            JSONObject obj = new JSONObject(response);
+//                            Intent intent = new Intent(login.this, cardview.class);
+//
+//                            //Bundle bd1 = new Bundle();
+//                           // bd1.putString("user_id", obj.getJSONArray("Data").getString(0));
+//                           // intent.putExtras(bd1);
+//
+//                            startActivity(intent);
+//                            finish();
+//                            /*if (obj.getBoolean("IsSuccess")) {
+//                                Log.e("respose",obj.toString());
+//
+//                            } else {
+//                                Toast.makeText(login.this, "Sorry, Authentication Fail!", Toast.LENGTH_SHORT).show();
+//                            }*/
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.e("response", error.getMessage());
+//                        Log.v("response", error.getMessage());
+//                        Toast.makeText(login.this, error.toString(), Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+////        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+////                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+////
+////
+//        {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("apiname", "UserLogin");
+//                params.put("phoneno", phone);
+//                params.put("password", password);
+//                return params;
+//
+//            }
+//        };
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(stringRequest);
+//    }
+
     private void registerUser() {
-        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+        String Url = "http://192.168.43.234/awarenes/login_user.php";
 
         final String phone = etphone1.getText().toString().trim();
         final String password = etpw1.getText().toString().trim();
@@ -115,47 +181,35 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        try {
-                            JSONObject obj = new JSONObject(response);
+                        String result = response.toString();
+                        String res = "no";
+                        if (result.matches(res)) {
+                            Toast.makeText(login.this, "Sorry, Authentication Fail!", Toast.LENGTH_SHORT).show();
+                        } else {
                             Intent intent = new Intent(login.this, cardview.class);
 
-                            //Bundle bd1 = new Bundle();
-                           // bd1.putString("user_id", obj.getJSONArray("Data").getString(0));
-                           // intent.putExtras(bd1);
+                            Bundle bd1 = new Bundle();
+                            bd1.putString("user_id", result);
+                            intent.putExtras(bd1);
 
                             startActivity(intent);
                             finish();
-                            /*if (obj.getBoolean("IsSuccess")) {
-                                Log.e("respose",obj.toString());
-
-                            } else {
-                                Toast.makeText(login.this, "Sorry, Authentication Fail!", Toast.LENGTH_SHORT).show();
-                            }*/
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("response", error.getMessage());
-                        Log.v("response", error.getMessage());
                         Toast.makeText(login.this, error.toString(), Toast.LENGTH_SHORT).show();
                     }
-                })
-//        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-//                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//
-//
-        {
+                }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("apiname", "UserLogin");
-                params.put("phoneno", phone);
-                params.put("password", password);
+                params.put("Lphone", phone);
+                params.put("Lpassword", password);
+//                params.put("StudentCity", city);
+//                params.put("StudentStatus", status);
                 return params;
 
             }

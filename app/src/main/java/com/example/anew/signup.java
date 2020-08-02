@@ -175,8 +175,60 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
     }
 */
 
+//    private void registerUser() {
+//        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+//        final String name = etname.getText().toString().trim();
+//        final String phone = etphone.getText().toString().trim();
+//        final String email = etemail.getText().toString().trim();
+//        final String password = etpw.getText().toString().trim();
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        try {
+//                            Log.e("1 -->>", "abc" + response);
+//                            //JSONObject obj = new JSONObject(response);
+//                            //Log.e("-->>",obj.toString());
+//                            //Toast.makeText(signup.this, obj.toString(), Toast.LENGTH_SHORT).show();
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                            Log.e("-->>", e.toString());
+//                        }
+//                        String res = "already";
+//                        String res1 = "no";
+//                        Intent intent = new Intent(signup.this, cardview.class);
+//                        Bundle bd1 = new Bundle();
+//                        bd1.putString("user_id", "");
+//                        intent.putExtras(bd1);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(signup.this, "Fail", Toast.LENGTH_SHORT).show();
+//                    }
+//                }) {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("apiname", "RegisterUser");
+//                params.put("uname", name);
+//                params.put("emailid", email);
+//                params.put("address", "");
+//                params.put("city", "1");
+//                params.put("phoneno", phone);
+//                params.put("password", password);
+//                return params;
+//            }
+//        };
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(stringRequest);
+//    }
+
     private void registerUser() {
-        String Url = "http://getconnected.edithlink.space/postwebservice.php";
+        String Url = "http://192.168.43.234/awarenes/insert_data.php";
         final String name = etname.getText().toString().trim();
         final String phone = etphone.getText().toString().trim();
         final String email = etemail.getText().toString().trim();
@@ -185,23 +237,22 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            Log.e("1 -->>", "abc" + response);
-                            //JSONObject obj = new JSONObject(response);
-                            //Log.e("-->>",obj.toString());
-                            //Toast.makeText(signup.this, obj.toString(), Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Log.e("-->>", e.toString());
-                        }
+                        String result = response.toString();
+
                         String res = "already";
                         String res1 = "no";
-                        Intent intent = new Intent(signup.this, cardview.class);
-                        Bundle bd1 = new Bundle();
-                        bd1.putString("user_id", "");
-                        intent.putExtras(bd1);
-                        startActivity(intent);
-                        finish();
+                        if (result.matches(res1)) {
+                            Toast.makeText(signup.this, "Sorry, an error occurred!", Toast.LENGTH_SHORT).show();
+                        } else if (result.matches(res)) {
+                            Toast.makeText(signup.this, "Sorry, email already exist!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intent = new Intent(signup.this, UsermapActivity.class);
+                            Bundle bd1 = new Bundle();
+                            bd1.putString("user_id", result);
+                            intent.putExtras(bd1);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -213,14 +264,13 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("apiname", "RegisterUser");
-                params.put("uname", name);
-                params.put("emailid", email);
-                params.put("address", "");
-                params.put("city", "1");
-                params.put("phoneno", phone);
-                params.put("password", password);
+                params.put("UName", name);
+                params.put("UPhone", phone);
+                params.put("UEmail", email);
+                params.put("UPassword", password);
+
                 return params;
+
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
