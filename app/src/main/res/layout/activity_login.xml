@@ -49,13 +49,13 @@
         android:theme="@style/LoginInputLayoutStyle">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/etphone1"
+            android:id="@+id/etemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape1"
-            android:drawableRight="@drawable/ic_phone_black_24dp"
-            android:hint="Your Mobile No"
-            android:inputType="number"
+            android:drawableRight="@drawable/ic_email_black_24dp"
+            android:hint="Your Email"
+            android:inputType="textEmailAddress"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/colorblack"

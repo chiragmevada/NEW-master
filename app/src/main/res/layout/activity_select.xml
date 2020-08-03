@@ -41,7 +41,7 @@
         </RelativeLayout>
 
         <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spAres"
+            android:id="@+id/spCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/img"
@@ -50,7 +50,7 @@
             android:layout_marginRight="30dp"/>
 
         <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spCity"
+            android:id="@+id/spAres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/img"

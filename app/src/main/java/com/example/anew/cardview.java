@@ -27,18 +27,6 @@ public class cardview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardview);
 
-        final String newString;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                newString = null;
-            } else {
-                newString = extras.getString("user_id");
-            }
-        } else {
-            newString = (String) savedInstanceState.getSerializable("STRING_I_NEED");
-        }
-
         cd1 = (CardView) findViewById(R.id.cd1);
         cd2 = (CardView) findViewById(R.id.cd2);
         cd3 = (CardView) findViewById(R.id.cd3);
@@ -80,7 +68,6 @@ public class cardview extends AppCompatActivity {
                 String val_tv1 = tv1.getText().toString();
                 Bundle bd1 = new Bundle();
                 Intent intent = new Intent(cardview.this, user_panel.class);
-                bd1.putString("user_id", newString);
                 intent.putExtras(bd1);
                 startActivity(intent);
             }
@@ -93,7 +80,6 @@ public class cardview extends AppCompatActivity {
                 Bundle bd1 = new Bundle();
                 Intent intent = new Intent(cardview.this, select.class);
                 bd1.putString("a", val_tv1);
-                bd1.putString("user_id", newString);
                 intent.putExtras(bd1);
                 startActivity(intent);
 
@@ -107,7 +93,6 @@ public class cardview extends AppCompatActivity {
                 Intent intent = new Intent(cardview.this, select.class);
 
                 bd2.putString("a", val_tv2);
-                bd2.putString("user_id", newString);
                 intent.putExtras(bd2);
                 startActivity(intent);
             }
@@ -120,7 +105,6 @@ public class cardview extends AppCompatActivity {
                 Intent intent = new Intent(cardview.this, select.class);
 
                 bd3.putString("a", val_tv3);
-                bd3.putString("user_id", newString);
                 intent.putExtras(bd3);
                 startActivity(intent);
 
@@ -134,7 +118,6 @@ public class cardview extends AppCompatActivity {
                 Intent intent = new Intent(cardview.this, select.class);
 
                 bd4.putString("a", val_tv4);
-                bd4.putString("user_id", newString);
                 intent.putExtras(bd4);
                 startActivity(intent);
             }
@@ -147,7 +130,6 @@ public class cardview extends AppCompatActivity {
                 Intent intent = new Intent(cardview.this, select.class);
 
                 bd5.putString("a", val_tv5);
-                bd5.putString("user_id", newString);
                 intent.putExtras(bd5);
                 startActivity(intent);
             }
@@ -160,7 +142,6 @@ public class cardview extends AppCompatActivity {
                 Intent intent = new Intent(cardview.this, select.class);
 
                 bd6.putString("a", val_tv6);
-                bd6.putString("user_id", newString);
                 intent.putExtras(bd6);
                 startActivity(intent);
 
@@ -174,7 +155,6 @@ public class cardview extends AppCompatActivity {
                 Intent intent = new Intent(cardview.this, select.class);
 
                 bd7.putString("a", val_tv7);
-                bd7.putString("user_id", newString);
                 intent.putExtras(bd7);
                 startActivity(intent);
 
@@ -188,7 +168,6 @@ public class cardview extends AppCompatActivity {
                 Intent intent = new Intent(cardview.this, select.class);
 
                 bd8.putString("a", val_tv8);
-                bd8.putString("user_id", newString);
                 intent.putExtras(bd8);
                 startActivity(intent);
             }
@@ -200,7 +179,6 @@ public class cardview extends AppCompatActivity {
                 Bundle bd9 = new Bundle();
                 Intent intent = new Intent(cardview.this, select.class);
                 bd9.putString("a", val_tv9);
-                bd9.putString("user_id", newString);
                 intent.putExtras(bd9);
                 startActivity(intent);
 

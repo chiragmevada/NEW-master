@@ -1,6 +1,8 @@
 package com.example.anew;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
@@ -35,7 +37,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     Button btnlogin;
     TextView tvllogin, tvdont;
     TextView tvforgot;
-    TextInputEditText etphone1, etpw1;
+    TextInputEditText etemail, etpw1;
     TextInputLayout textInputLayout, tvl;
 
     String UpperCaseRegex = ".*[A-Z].*";
@@ -52,7 +54,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         tvllogin = (TextView) findViewById(R.id.tvllogin);
         tvforgot = (TextView) findViewById(R.id.tvforgot);
         tvdont = (TextView) findViewById(R.id.tvdont);
-        etphone1 = (TextInputEditText) findViewById(R.id.etphone1);
+        etemail = (TextInputEditText) findViewById(R.id.etemail);
         etpw1 = (TextInputEditText) findViewById(R.id.etpw1);
         textInputLayout = (TextInputLayout) findViewById(R.id.tvl2);
         tvl = (TextInputLayout) findViewById(R.id.tvl);
@@ -94,10 +96,10 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
         });
 
-        etphone1.setOnLongClickListener(new View.OnLongClickListener() {
+        etemail.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                etphone1.setText("");
+                etemail.setText("");
                 return true;
 
             }
@@ -172,28 +174,32 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 //    }
 
     private void registerUser() {
-        String Url = "http://192.168.43.234/awarenes/login_user.php";
+        String Url = "http://skysparrow.in/project_api/awearness/api_userlogin.php";
 
-        final String phone = etphone1.getText().toString().trim();
+        final String phone = etemail.getText().toString().trim();
         final String password = etpw1.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        String result = response.toString();
-                        String res = "no";
-                        if (result.matches(res)) {
-                            Toast.makeText(login.this, "Sorry, Authentication Fail!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent intent = new Intent(login.this, cardview.class);
-
-                            Bundle bd1 = new Bundle();
-                            bd1.putString("user_id", result);
-                            intent.putExtras(bd1);
-
-                            startActivity(intent);
-                            finish();
+                        Intent intent = new Intent(login.this, cardview.class);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String res = jsonObject.getString("response");
+                            Toast.makeText(login.this, res, Toast.LENGTH_SHORT).show();
+                            if (res.equals("success")) {
+                                SharedPreferences sharedpreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+                                editor.putString("userid", jsonObject.getString("register_id"));
+                                editor.commit();
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(login.this, "email or password is incorrect", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                 },
@@ -206,10 +212,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Lphone", phone);
-                params.put("Lpassword", password);
-//                params.put("StudentCity", city);
-//                params.put("StudentStatus", status);
+                params.put("email", phone);
+                params.put("password", password);
                 return params;
 
             }
@@ -223,40 +227,15 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btnlogin:
                 String pass = etpw1.getText().toString().trim();
-                String phn = etphone1.getText().toString().trim();
-
+                String phn = etemail.getText().toString().trim();
 
                 if (TextUtils.isEmpty(phn)) {
-                    tvl.setError(" ");
-                    Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
-                } else if ((phn.length() != 10)) {
-                    tvl.setError(" ");
-                    Toast.makeText(this, "Phone number must be 10 digit number",
-                            Toast.LENGTH_SHORT).show();
-                } else if (!phn.matches(NumberRegex)) {
-                    tvl.setError(" ");
-                    Toast.makeText(this, "phone number must be number not character",
-                            Toast.LENGTH_SHORT).show();
+                    tvl.setError("Please enter email");
+                    Toast.makeText(this, "Enter email address", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(pass)) {
                     textInputLayout.setError(" ");
                     Toast.makeText(this, "Enter password",
                             Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(UpperCaseRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one uppercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(LowerCaseRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one lowercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(SpecialCharRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one special character in password in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(NumberRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one number in password",
-                            Toast.LENGTH_SHORT).show();
-                } else if (pass.length() <= 6) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "password should be more than 6 chars", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser();
                 }
