@@ -218,7 +218,7 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Intent intent = new Intent(servicesignup.this, map.class);
+                        Intent intent = new Intent(servicesignup.this, provider_panel.class);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String res = jsonObject.getString("Response");
