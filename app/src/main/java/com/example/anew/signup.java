@@ -38,12 +38,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
     TextInputLayout tvl1, tvl2, tvl3, tvl4;
     EditText etname, etphone, etpw, etemail;
 
-    String UpperCaseRegex = ".*[A-Z].*";
-    String LowerCaseRegex = ".*[a-z].*";
-    String SpecialCharRegex = ".*[@#$%^.&+=].*";
     String NumberRegex = ".*[0-9].*";
-
-    AsyncHttpClient asyncHttpClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +59,6 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
         tvl4 = (TextInputLayout) findViewById(R.id.tvl4);
 
         btnsignup.setOnClickListener(this);
-
 
         etname.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -127,10 +121,8 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
             public void onClick(View v) {
                 Intent intent = new Intent(signup.this, termscondition.class);
                 startActivity(intent);
-
             }
         });
-
     }
 
     /*public  void registerUser() {
@@ -237,22 +229,10 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        String result = response.toString();
 
-                        String res = "already";
-                        String res1 = "no";
-                        if (result.matches(res1)) {
-                            Toast.makeText(signup.this, "Sorry, an error occurred!", Toast.LENGTH_SHORT).show();
-                        } else if (result.matches(res)) {
-                            Toast.makeText(signup.this, "Sorry, email already exist!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent intent = new Intent(signup.this, UsermapActivity.class);
-                            Bundle bd1 = new Bundle();
-                            bd1.putString("user_id", result);
-                            intent.putExtras(bd1);
-                            startActivity(intent);
-                            finish();
-                        }
+                        Intent intent = new Intent(signup.this, UsermapActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 },
                 new Response.ErrorListener() {
@@ -268,9 +248,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                 params.put("UPhone", phone);
                 params.put("UEmail", email);
                 params.put("UPassword", password);
-
                 return params;
-
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -289,10 +267,6 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                 if (TextUtils.isEmpty(Name)) {
                     tvl1.setError(" ");
                     Toast.makeText(this, "Enter name", Toast.LENGTH_SHORT).show();
-                } else if (!Name.matches("[a-zA-Z ]+")) {
-                    tvl2.setError(" ");
-                    Toast.makeText(this, "Only alphabatic allowed in name",
-                            Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(phn)) {
                     tvl2.setError(" ");
                     Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
@@ -315,19 +289,6 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                 } else if (TextUtils.isEmpty(pass)) {
                     tvl4.setError(" ");
                     Toast.makeText(this, "Enter password",
-                            Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(UpperCaseRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one uppercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(LowerCaseRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one lowercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(SpecialCharRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one special character in password in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(NumberRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one number in password",
                             Toast.LENGTH_SHORT).show();
                 } else if (pass.length() <= 6) {
                     tvl4.setError(" ");

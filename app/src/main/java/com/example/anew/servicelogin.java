@@ -1,6 +1,8 @@
 package com.example.anew;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +21,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +33,6 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
     TextView tvsforgot;
     TextInputEditText etsphone1, etspw1;
     TextInputLayout textInputLayout, tvl1;
-
-    String UpperCaseRegex = ".*[A-Z].*";
-    String LowerCaseRegex = ".*[a-z].*";
-    String SpecialCharRegex = ".*[@#$%^.&+=].*";
-    String NumberRegex = ".*[0-9].*";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,21 +155,24 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        String result = response.toString();
-                        String res = "no";
-                        if (result.matches(res)) {
-                            Toast.makeText(servicelogin.this, "Sorry, Authentication Fail!", Toast.LENGTH_SHORT).show();
-                        } else {
 
-                            Intent intent = new Intent(servicelogin.this, provider_panel.class);
-
-                            Bundle bd1 = new Bundle();
-                            bd1.putString("user_id", result);
-                            intent.putExtras(bd1);
-
-                            startActivity(intent);
-                            finish();
-
+                        Intent intent = new Intent(servicelogin.this, provider_panel.class);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String res = jsonObject.getString("response");
+                            Toast.makeText(servicelogin.this, res, Toast.LENGTH_SHORT).show();
+                            if (res.equals("success")) {
+                                SharedPreferences sharedpreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+                                editor.putString("userid", jsonObject.getString("register_id"));
+                                editor.commit();
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(servicelogin.this, "email or password is incorrect", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                 },
@@ -202,34 +205,10 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
                 if (TextUtils.isEmpty(phn)) {
                     tvl1.setError(" ");
                     Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
-                } else if ((phn.length() != 10)) {
-                    tvl1.setError(" ");
-                    Toast.makeText(this, "Phone number must be 10 digit number",
-                            Toast.LENGTH_SHORT).show();
-                } else if (!phn.matches(NumberRegex)) {
-                    tvl1.setError(" ");
-                    Toast.makeText(this, "phone number must be number not character",
-                            Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(pass)) {
                     textInputLayout.setError(" ");
                     Toast.makeText(this, "Enter password",
                             Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(UpperCaseRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one uppercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(LowerCaseRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one lowercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(SpecialCharRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one special character in password in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(NumberRegex)) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "Add one number in password",
-                            Toast.LENGTH_SHORT).show();
-                } else if (pass.length() <= 6) {
-                    textInputLayout.setError(" ");
-                    Toast.makeText(this, "password should be more than 6 chars", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser();
                 }
