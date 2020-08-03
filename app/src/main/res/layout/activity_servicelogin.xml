@@ -62,7 +62,7 @@
             android:background="@drawable/shape1"
             android:drawableRight="@drawable/ic_email_black_24dp"
             android:hint="Enter Your Email"
-            android:inputType="number"
+            android:inputType="textEmailAddress"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/colorblack"

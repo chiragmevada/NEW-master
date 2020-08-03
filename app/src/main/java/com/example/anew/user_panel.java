@@ -59,7 +59,7 @@ public class user_panel extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(user_panel.this, login.class);
+                Intent intent = new Intent(user_panel.this, User_serviceprovider.class);
                 startActivity(intent);
                 finish();
             }

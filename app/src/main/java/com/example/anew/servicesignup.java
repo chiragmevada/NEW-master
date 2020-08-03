@@ -1,6 +1,8 @@
 package com.example.anew;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -205,7 +207,7 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
 
 
     private void registerUser() {
-        String Url = "http://192.168.43.234/awarenes/service_insert_data.php";
+        String Url = "http://skysparrow.in/project_api/awearness/api_add_serviceprovider.php";
 
         final String cat = category.trim();
         final String s_p_phone = etsphone.getText().toString().trim();
@@ -216,20 +218,19 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        String result = response.toString();
-                        String res = "already";
-                        String res1 = "no";
-                        if (result.matches(res1)) {
-                            Toast.makeText(servicesignup.this, "Sorry, an error occurred!", Toast.LENGTH_SHORT).show();
-                        } else if (result.matches(res)) {
-                            Toast.makeText(servicesignup.this, "Sorry, email already exist!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent intent = new Intent(servicesignup.this, map.class);
-                            Bundle bd1 = new Bundle();
-                            bd1.putString("user_id", result);
-                            intent.putExtras(bd1);
-                            startActivity(intent);
-                            finish();
+                        Intent intent = new Intent(servicesignup.this, map.class);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String res = jsonObject.getString("Response");
+                            if (res.equals("Register Success")) {
+                                Toast.makeText(servicesignup.this, res, Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(servicesignup.this, "registration fail", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                 },
@@ -243,10 +244,13 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("cat", cat);
-                params.put("spPhone", s_p_phone);
-                params.put("spEmail", s_p_email);
-                params.put("Pass", password);
+                params.put("category", cat);
+                params.put("uname", s_p_email);
+                params.put("s_p_phone", s_p_phone);
+                params.put("s_p_email", s_p_email);
+                params.put("location_id", "1");
+                params.put("full_address", "");
+                params.put("password", password);
                 return params;
 
             }
@@ -287,19 +291,6 @@ public class servicesignup extends AppCompatActivity implements View.OnClickList
                 } else if (TextUtils.isEmpty(pass)) {
                     tvl4.setError(" ");
                     Toast.makeText(this, "Enter password",
-                            Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(UpperCaseRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one uppercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(LowerCaseRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one lowercase character in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(SpecialCharRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one special character in password in password", Toast.LENGTH_SHORT).show();
-                } else if (!pass.matches(NumberRegex)) {
-                    tvl4.setError(" ");
-                    Toast.makeText(this, "Add one number in password",
                             Toast.LENGTH_SHORT).show();
                 } else if (pass.length() <= 6) {
                     tvl4.setError(" ");

@@ -134,7 +134,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
         Log.e("****>", Selected_gender.toString());
         Log.e("****>", current_user);
         requestParams.put("userid", current_user);
-        requestParams.put("name", member_name.getText());
+        requestParams.put("name", member_name.getT.ext());
         requestParams.put("gender", Selected_gender.getText().toString());
         requestParams.put("dob", passing_DOB);
         requestParams.put("relation", spinner.getSelectedItem().toString());
@@ -220,7 +220,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
 //    }
 
     private void registerUser() {
-        String Url = "http://192.168.43.234/awarenes/insert_data.php";
+        String Url = "http://skysparrow.in/project_api/awearness/api_registeruser.php";
         final String name = etname.getText().toString().trim();
         final String phone = etphone.getText().toString().trim();
         final String email = etemail.getText().toString().trim();
@@ -229,10 +229,20 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        Intent intent = new Intent(signup.this, UsermapActivity.class);
-                        startActivity(intent);
-                        finish();
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            String res = jsonObject.getString("Response");
+                            if (res.equals("Register Success")) {
+                                Intent intent = new Intent(signup.this, view.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(signup.this, "Registration Fail", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -244,10 +254,12 @@ public class signup extends AppCompatActivity implements View.OnClickListener {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("UName", name);
-                params.put("UPhone", phone);
-                params.put("UEmail", email);
-                params.put("UPassword", password);
+                params.put("uname", name);
+                params.put("email", email);
+                params.put("phone", phone);
+                params.put("address", "");
+                params.put("city", "");
+                params.put("password", password);
                 return params;
             }
         };

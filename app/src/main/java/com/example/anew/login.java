@@ -40,11 +40,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     TextInputEditText etemail, etpw1;
     TextInputLayout textInputLayout, tvl;
 
-    String UpperCaseRegex = ".*[A-Z].*";
-    String LowerCaseRegex = ".*[a-z].*";
-    String SpecialCharRegex = ".*[@#$%^.&+=].*";
-    String NumberRegex = ".*[0-9].*";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

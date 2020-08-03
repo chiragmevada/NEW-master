@@ -146,7 +146,7 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
 //    }
 
     private void registerUser() {
-        String Url = "http://192.168.43.234/awarenes/service_login.php";
+        String Url = "http://skysparrow.in/project_api/awearness/api_login_service_provider.php";
 
         final String sphone = etsphone1.getText().toString().trim();
         final String spassword = etspw1.getText().toString().trim();
@@ -164,7 +164,7 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
                             if (res.equals("success")) {
                                 SharedPreferences sharedpreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString("userid", jsonObject.getString("register_id"));
+                                editor.putString("userid", jsonObject.getString("s_p_id"));
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
@@ -185,10 +185,9 @@ public class servicelogin extends AppCompatActivity implements View.OnClickListe
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Lphone", sphone);
-                params.put("Lpassword", spassword);
+                params.put("email", sphone);
+                params.put("password", spassword);
                 return params;
-
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
